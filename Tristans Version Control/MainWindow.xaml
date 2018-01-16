@@ -1,0 +1,38 @@
+﻿<Window x:Class="Tristans_Version_Control.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tristans_Version_Control"
+        mc:Ignorable="d"
+        Title="Tristan's Version Control" Height="450" Width="800" ResizeMode="NoResize" Background="White">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Background="#FF96CA61">
+            <Button Name="FilesMenuButton" Click="FilesMenuButton_Click"  Height="60" Width="60" FontWeight="Bold" FontSize="22" Foreground="Black" BorderBrush="{x:Null}" Background="{x:Null}">
+                <Image Source="files icon.png"/>
+            </Button>
+            <Button Name="NotificationsMenuButton" Click="NotificationsMenuButton_Click" Height="60" Width="60" BorderBrush="{x:Null}" Background="{x:Null}" Margin="0,5,0,0">
+                <Image Source="notifications bell.png" Margin="0"/>
+            </Button>
+        </StackPanel>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="360*"/>
+                <RowDefinition Height="41*"/>
+            </Grid.RowDefinitions>
+
+            <Rectangle Grid.Row="1" Fill="#FF4B6431"/>
+            <StackPanel Grid.Row="1" Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" >
+                <Button Width="100" Margin="5" Content="Clear All"/>
+                <Button Width="100" Margin="5" Content="Finish"/>
+            </StackPanel>
+
+            <Frame Name="ContentFrame" Source="FilesPage.xaml" NavigationUIVisibility="Hidden"/>
+        </Grid>
+    </Grid>
+</Window>

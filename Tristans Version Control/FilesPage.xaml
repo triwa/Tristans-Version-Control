@@ -1,0 +1,68 @@
+﻿<Page x:Class="Tristans_Version_Control.FilesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Tristans_Version_Control"
+      mc:Ignorable="d" 
+      d:DesignHeight="378" d:DesignWidth="734"
+      Title="FilesPage">
+    <Page.Background>
+        <ImageBrush ImageSource="background.jpg"/>
+    </Page.Background>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <Label HorizontalAlignment="Center" FontWeight="Bold" Foreground="Black" Background="{x:Null}">Current Files:</Label>
+            <ListView Name="FilesListView" SelectionChanged="FilesListView_SelectionChanged" BorderBrush="{x:Null}" Background="{x:Null}" SelectionMode="Single">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="311"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding FilePath}"/>
+                            <Button Grid.Column="1" Name="DeleteFileButton" Click="DeleteFileButton_Click" HorizontalAlignment="Right" >delete</Button>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Name="AddNewFileButton" HorizontalAlignment="Right" Margin="0,5,10,0" Click="AddNewFileButton_Click" >New File to Back Up</Button>
+        </StackPanel>
+        <StackPanel Name="SelectedFileStackPanel" Grid.Column="1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label Grid.Column="1" HorizontalAlignment="Center" FontWeight="Bold" Foreground="Black" Background="{x:Null}">Selected File:</Label>
+                <Label Name="SelectedFileLabel" Grid.Column="1" HorizontalAlignment="Center" FontWeight="Bold" Foreground="Black" Background="{x:Null}">filename</Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Foreground="Black" Background="{x:Null}">New Version Every:</Label>
+                <TextBox Name="TimerIntervalTextBox" Width="30" VerticalAlignment="Center" TextAlignment="Center">
+                    <TextBox.Background>
+                        <SolidColorBrush Color="White" Opacity="0.6"/>
+                    </TextBox.Background> 5
+                </TextBox>
+                <Label Foreground="Black" Background="{x:Null}">minutes</Label>
+            </StackPanel>
+            <ListView Name="SavePathsListView" BorderBrush="{x:Null}" Background="{x:Null}" SelectionMode="Single">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="311"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding}"/>
+                            <Button Grid.Column="1" Name="DeleteSavePathButton" Click="DeleteSavePathButton_Click" HorizontalAlignment="Right" >delete</Button>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Name="AddNewSaveButton" HorizontalAlignment="Right" Margin="0,5,10,0" Click="AddNewSaveButton_Click" >New Save Location</Button>
+        </StackPanel>
+    </Grid>
+</Page>
