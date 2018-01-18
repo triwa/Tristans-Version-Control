@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Configuration;
 using System.Threading;
 
 namespace Tristans_Version_Control
@@ -15,11 +16,11 @@ namespace Tristans_Version_Control
         private string fileName;
         private ObservableCollection<string> savePaths = new ObservableCollection<string>();
         private int timerInterval;
-
+        
         public TvcFile()
         {
         }
-
+        
         public string FileName
         {
             get => fileName;

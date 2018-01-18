@@ -24,12 +24,12 @@ namespace Tristans_Version_Control
     //
     public partial class FilesPage : Page
     {
-        ObservableCollection<TvcFile> filesCollection = new ObservableCollection<TvcFile>();
+        public ObservableCollection<TvcFile> filesCollection = new ObservableCollection<TvcFile>();
 
         public FilesPage()
         {
             InitializeComponent();
-            SelectedFileStackPanel.Visibility = Visibility.Hidden;
+            SelectedFileGrid.Visibility = Visibility.Hidden;
             LoadTestData();
 
 
@@ -87,14 +87,14 @@ namespace Tristans_Version_Control
 
             if (selectedItem == null)
             {
-                SelectedFileStackPanel.Visibility = Visibility.Hidden;
+                SelectedFileGrid.Visibility = Visibility.Hidden;
             }
             else
             {
                 SelectedFileLabel.Content = selectedItem.FileName;
                 SavePathsListView.ItemsSource = selectedItem.SavePaths;
                 TimerIntervalTextBox.Text = selectedItem.TimerInterval.ToString();
-                SelectedFileStackPanel.Visibility = Visibility.Visible;
+                SelectedFileGrid.Visibility = Visibility.Visible;
             }
         }
 

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Tristans_Version_Control
 {
     /// <summary>
-    /// Interaction logic for NotificationsPage.xaml
+    /// Interaction logic for SettingsPage.xaml
     /// </summary>
-    public partial class NotificationsPage : Page
+    public partial class SettingsPage : Page
     {
-        public NotificationsPage()
+        public SettingsPage()
         {
             InitializeComponent();
         }

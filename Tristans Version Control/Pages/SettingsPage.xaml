@@ -1,0 +1,18 @@
+﻿<Page x:Class="Tristans_Version_Control.SettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Tristans_Version_Control"
+      xmlns:properties="clr-namespace:Tristans_Version_Control.Properties"
+      mc:Ignorable="d" 
+      d:DesignHeight="378" d:DesignWidth="734"
+      Title="SettingsPage" Background="White">
+
+    <StackPanel Margin="10,0,10,0">
+        <Label HorizontalAlignment="Center" FontWeight="Bold">Application Settings:</Label>
+        <CheckBox IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=StartWithWindowsBool}" Margin="0,0,0,5">Start with Windows</CheckBox>
+        <CheckBox IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=RememberFilesBool}" Margin="0,0,0,5">Remember Files</CheckBox>
+        <CheckBox IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=RememberNotificationsBool}">Remember Notification Programs</CheckBox>
+    </StackPanel>
+</Page>

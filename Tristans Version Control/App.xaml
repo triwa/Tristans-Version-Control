@@ -8,7 +8,6 @@
             <Setter Property="Cursor" Value="Hand"/>
         </Style>
         <Style TargetType="ListViewItem">
-            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
             <Setter Property="Background">
                 <Setter.Value>
                     <SolidColorBrush Color="White" Opacity="0.6"/>

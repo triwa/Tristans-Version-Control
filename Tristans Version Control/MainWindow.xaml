@@ -5,18 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tristans_Version_Control"
         mc:Ignorable="d"
-        Title="Tristan's Version Control" Height="450" Width="800" ResizeMode="NoResize" Background="White">
+        Title="Tristan's Version Control" Height="450" Width="800" ResizeMode="NoResize" Background="White" Closing="Window_Closing">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel Background="#FF96CA61">
-            <Button Name="FilesMenuButton" Click="FilesMenuButton_Click"  Height="60" Width="60" FontWeight="Bold" FontSize="22" Foreground="Black" BorderBrush="{x:Null}" Background="{x:Null}">
-                <Image Source="files icon.png"/>
+            <Button Name="FilesMenuButton" Click="FilesMenuButton_Click" ToolTip="Files"  Height="60" Width="60" FontWeight="Bold" FontSize="22" Foreground="Black" BorderBrush="{x:Null}">
+                <Button.Background>
+                    <SolidColorBrush Color="White" Opacity="0"/>
+                </Button.Background>
+                <Image Source="Images\files icon.png"/>
             </Button>
-            <Button Name="NotificationsMenuButton" Click="NotificationsMenuButton_Click" Height="60" Width="60" BorderBrush="{x:Null}" Background="{x:Null}" Margin="0,5,0,0">
-                <Image Source="notifications bell.png" Margin="0"/>
+            <Button Name="NotificationsMenuButton" Click="NotificationsMenuButton_Click" ToolTip="Notifications" Height="60" Width="60" BorderBrush="{x:Null}" Margin="0,5,0,0">
+                <Button.Background>
+                    <SolidColorBrush Color="White" Opacity="0"/>
+                </Button.Background>
+                <Image Source="Images/notifications bell.png"/>
+            </Button>
+            <Button Name="SettingsMenuButton" Click="SettingsMenuButton_Click"  ToolTip="Settings" Height="60" Width="60" BorderBrush="{x:Null}" Margin="0,5,0,0">
+                <Button.Background>
+                    <SolidColorBrush Color="White" Opacity="0"/>
+                </Button.Background>
+                <Image Source="Images/settings icon.png"/>
             </Button>
         </StackPanel>
 
@@ -28,11 +40,10 @@
 
             <Rectangle Grid.Row="1" Fill="#FF4B6431"/>
             <StackPanel Grid.Row="1" Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" >
-                <Button Width="100" Margin="5" Content="Clear All"/>
-                <Button Width="100" Margin="5" Content="Finish"/>
+                <Button Name="FinishButton" Width="100" Margin="5" Content="Finish" Click="FinishButton_Click"/>
             </StackPanel>
 
-            <Frame Name="ContentFrame" Source="FilesPage.xaml" NavigationUIVisibility="Hidden"/>
+            <Frame Name="ContentFrame" NavigationUIVisibility="Hidden"/>
         </Grid>
     </Grid>
 </Window>
