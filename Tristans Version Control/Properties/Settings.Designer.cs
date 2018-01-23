@@ -73,12 +73,25 @@ namespace Tristans_Version_Control.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.Collections.Specialized.StringCollection SelectedNotificationsCollection {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string XMLSerializedNotificationsCollection {
             get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["SelectedNotificationsCollection"]));
+                return ((string)(this["XMLSerializedNotificationsCollection"]));
             }
             set {
-                this["SelectedNotificationsCollection"] = value;
+                this["XMLSerializedNotificationsCollection"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool StartMinimizedBool {
+            get {
+                return ((bool)(this["StartMinimizedBool"]));
+            }
+            set {
+                this["StartMinimizedBool"] = value;
             }
         }
     }

@@ -14,8 +14,11 @@
     <Setting Name="RememberNotificationsBool" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="SelectedNotificationsCollection" Type="System.Collections.Specialized.StringCollection" Scope="User">
+    <Setting Name="XMLSerializedNotificationsCollection" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="StartMinimizedBool" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

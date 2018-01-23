@@ -5,34 +5,81 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tristans_Version_Control"
         mc:Ignorable="d"
-        Title="Tristan's Version Control" Height="450" Width="800" ResizeMode="NoResize" Background="White" Closing="Window_Closing">
+        Title="Tristan's Version Control" Height="450" Width="800" ResizeMode="NoResize" Background="{x:Null}" Closing="Window_Closing" AllowsTransparency="True" WindowStyle="None"
+        Name="Window">
+
+    <Window.Resources>
+        <ControlTemplate x:Key="WindowCloseButtonTemplate" TargetType="{x:Type ButtonBase}">
+            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" TargetName="border" Value="#FFE81123"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <StackPanel Background="#FF96CA61">
-            <Button Name="FilesMenuButton" Click="FilesMenuButton_Click" ToolTip="Files"  Height="60" Width="60" FontWeight="Bold" FontSize="22" Foreground="Black" BorderBrush="{x:Null}">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="421"/>
+        </Grid.RowDefinitions>
+
+        <Grid Name="WindowTitleBar" MouseDown="WindowTitleBar_MouseLeftButtonDown" Grid.ColumnSpan="2" Background="#FF4B6431">
+            <Image Source="Images/super special icon made by grant.ico" HorizontalAlignment="Left" Margin="4"/>
+            <TextBlock Text="{Binding ElementName=Window, Path=Title}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="16"/>
+            <Button Name="WindowCloseButton" Click="WindowCloseButton_Click" HorizontalAlignment="Right" Width="40" Cursor="Arrow" Template="{DynamicResource WindowCloseButtonTemplate}" BorderThickness="0" Background="#FF96CA61">
+                ✖
+                <Button.Resources>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Grid>
+        
+        <StackPanel Grid.Row="1">
+            <StackPanel.Background>
+                <SolidColorBrush Color="#FF96CA61" Opacity="0.9"/>
+            </StackPanel.Background>
+            <Button Name="FilesMenuButton" Click="FilesMenuButton_Click" FontWeight="Bold">
+                Files
                 <Button.Background>
                     <SolidColorBrush Color="White" Opacity="0"/>
                 </Button.Background>
-                <Image Source="Images\files icon.png"/>
             </Button>
-            <Button Name="NotificationsMenuButton" Click="NotificationsMenuButton_Click" ToolTip="Notifications" Height="60" Width="60" BorderBrush="{x:Null}" Margin="0,5,0,0">
+            <Button Name="NotificationsMenuButton" Click="NotificationsMenuButton_Click" FontWeight="Bold">
+                Notifications
                 <Button.Background>
                     <SolidColorBrush Color="White" Opacity="0"/>
                 </Button.Background>
-                <Image Source="Images/notifications bell.png"/>
             </Button>
-            <Button Name="SettingsMenuButton" Click="SettingsMenuButton_Click"  ToolTip="Settings" Height="60" Width="60" BorderBrush="{x:Null}" Margin="0,5,0,0">
+            <Button Name="SettingsMenuButton" Click="SettingsMenuButton_Click" FontWeight="Bold">
+                Settings
                 <Button.Background>
                     <SolidColorBrush Color="White" Opacity="0"/>
                 </Button.Background>
-                <Image Source="Images/settings icon.png"/>
             </Button>
+            <StackPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="Height" Value="60"/>
+                    <Setter Property="Margin" Value="2,0"/>
+                </Style>
+            </StackPanel.Resources>
         </StackPanel>
 
-        <Grid Grid.Column="1">
+        <Grid Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="360*"/>
                 <RowDefinition Height="41*"/>

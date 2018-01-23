@@ -1,21 +1,11 @@
 ﻿using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Dialogs;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Xml.Serialization;
+using Tristans_Version_Control.Properties;
 
 namespace Tristans_Version_Control
 {
@@ -30,45 +20,8 @@ namespace Tristans_Version_Control
         {
             InitializeComponent();
             SelectedFileGrid.Visibility = Visibility.Hidden;
-            LoadTestData();
-
-
+            LoadSettings();
             FilesListView.ItemsSource = filesCollection;
-        }
-
-        private void LoadTestData()
-        {
-            //
-            //test data
-            //
-            TvcFile example1 = new TvcFile() { FilePath = "path1", FileName = "name1", TimerInterval = 1 };
-            example1.SavePaths.Add("name1Save1");
-            example1.SavePaths.Add("name1Save2");
-            example1.SavePaths.Add("name1Save3");
-            TvcFile example2 = new TvcFile() { FilePath = "path2", FileName = "name2", TimerInterval = 2 };
-            example2.SavePaths.Add("name2Save1");
-            example2.SavePaths.Add("name2Save2");
-            example2.SavePaths.Add("name2Save3");
-            TvcFile example3 = new TvcFile() { FilePath = "path3", FileName = "name3", TimerInterval = 3 };
-            example3.SavePaths.Add("name3Save1");
-            example3.SavePaths.Add("name3Save2");
-            example3.SavePaths.Add("name3Save3");
-            TvcFile example4 = new TvcFile() { FilePath = "path4", FileName = "name4", TimerInterval = 4 };
-            example4.SavePaths.Add("name4Save1");
-            example4.SavePaths.Add("name4Save2");
-            example4.SavePaths.Add("name4Save3");
-            TvcFile example5 = new TvcFile() { FilePath = "path5", FileName = "name5", TimerInterval = 5 };
-            example5.SavePaths.Add("name5Save1");
-            example5.SavePaths.Add("name5Save2");
-            example5.SavePaths.Add("name5Save3");
-            filesCollection.Add(example1);
-            filesCollection.Add(example2);
-            filesCollection.Add(example3);
-            filesCollection.Add(example4);
-            filesCollection.Add(example5);
-            //
-            //end test data
-            //
         }
 
         //removes the TvcFile from the collection
@@ -91,9 +44,7 @@ namespace Tristans_Version_Control
             }
             else
             {
-                SelectedFileLabel.Content = selectedItem.FileName;
-                SavePathsListView.ItemsSource = selectedItem.SavePaths;
-                TimerIntervalTextBox.Text = selectedItem.TimerInterval.ToString();
+                SelectedFileGrid.DataContext = selectedItem;
                 SelectedFileGrid.Visibility = Visibility.Visible;
             }
         }
@@ -110,8 +61,10 @@ namespace Tristans_Version_Control
         //creates a new TvcFile and adds it to the collection
         private void AddNewFileButton_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Multiselect = false;
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Multiselect = false
+            };
             openFileDialog.ShowDialog();
 
             if (openFileDialog.FileName != "")
@@ -119,9 +72,9 @@ namespace Tristans_Version_Control
                 TvcFile tvcFile = new TvcFile()
                 {
                     FilePath = openFileDialog.FileName,
-                    FileName = openFileDialog.SafeFileName,
-                    TimerInterval = 5,
-                    SavePaths = { System.IO.Path.ChangeExtension(openFileDialog.FileName, null) + " -- Version History"}
+                    FileNameFull = openFileDialog.SafeFileName,
+                    TimerInterval = 10,
+                    SavePaths = { System.IO.Path.ChangeExtension(openFileDialog.FileName, null) + " -- Version History" }
                 };
 
                 filesCollection.Add(tvcFile);
@@ -142,6 +95,13 @@ namespace Tristans_Version_Control
 
                 selectedFile.SavePaths.Add(folderDialog.FileName);
             }
+        }
+        
+        //parse files from application settings and fill collection
+        private void LoadSettings() {
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(ObservableCollection<TvcFile>));
+            StringReader stringReader = new StringReader(Settings.Default.XMLSerializedTvcFileCollection);
+            filesCollection = (ObservableCollection<TvcFile>)xmlSerializer.Deserialize(stringReader);
         }
     }
 }

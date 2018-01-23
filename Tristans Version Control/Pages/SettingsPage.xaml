@@ -6,13 +6,14 @@
       xmlns:local="clr-namespace:Tristans_Version_Control"
       xmlns:properties="clr-namespace:Tristans_Version_Control.Properties"
       mc:Ignorable="d" 
-      d:DesignHeight="378" d:DesignWidth="734"
+      d:DesignHeight="378" d:DesignWidth="740"
       Title="SettingsPage" Background="White">
 
     <StackPanel Margin="10,0,10,0">
-        <Label HorizontalAlignment="Center" FontWeight="Bold">Application Settings:</Label>
-        <CheckBox IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=StartWithWindowsBool}" Margin="0,0,0,5">Start with Windows</CheckBox>
-        <CheckBox IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=RememberFilesBool}" Margin="0,0,0,5">Remember Files</CheckBox>
-        <CheckBox IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=RememberNotificationsBool}">Remember Notification Programs</CheckBox>
+        <Label HorizontalAlignment="Center" FontWeight="Bold">Settings:</Label>
+        <CheckBox IsChecked="{Binding StartWithWindowsBool}" Margin="0,0,0,5">Start with Windows</CheckBox>
+        <CheckBox IsChecked="{Binding StartMinimizedBool}" Margin="0,0,0,5">Start Minimized</CheckBox>
+        <CheckBox IsChecked="{Binding RememberFilesBool}" Margin="0,0,0,5">Remember Files</CheckBox>
+        <CheckBox IsChecked="{Binding RememberNotificationsBool}">Remember Notification Programs</CheckBox>
     </StackPanel>
 </Page>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Configuration;
+using System.IO;
 using System.Threading;
 
 namespace Tristans_Version_Control
@@ -13,30 +14,29 @@ namespace Tristans_Version_Control
     public class TvcFile : INotifyPropertyChanged
     {
         private string filePath;
-        private string fileName;
-        private ObservableCollection<string> savePaths = new ObservableCollection<string>();
+        private string fileNameFull;
+        public string FileNameShort { get; set; }
+        public string FileExtension { get; set; }
+        public ObservableCollection<string> SavePaths { get; set; }
         private int timerInterval;
-        
+        public int timerRemaining { get; set; }
+
         public TvcFile()
         {
+            SavePaths = new ObservableCollection<string>();
+            timerRemaining = 0;
         }
         
-        public string FileName
+        public string FileNameFull
         {
-            get => fileName;
+            get => fileNameFull;
             set
             {
-                fileName = value;
+                fileNameFull = value;
+                FileNameShort = Path.GetFileNameWithoutExtension(value);
+                FileExtension = Path.GetExtension(value);
+
                 OnPropertyChanged("FileName");
-            }
-        }
-        public ObservableCollection<string> SavePaths
-        {
-            get => savePaths;
-            set
-            {
-                savePaths = value;
-                OnPropertyChanged("SavePaths");
             }
         }
 
