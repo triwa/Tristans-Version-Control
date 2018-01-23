@@ -99,9 +99,12 @@ namespace Tristans_Version_Control
         
         //parse files from application settings and fill collection
         private void LoadSettings() {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(ObservableCollection<TvcFile>));
-            StringReader stringReader = new StringReader(Settings.Default.XMLSerializedTvcFileCollection);
-            filesCollection = (ObservableCollection<TvcFile>)xmlSerializer.Deserialize(stringReader);
+            if (Settings.Default.XMLSerializedNotificationsCollection != "")
+            {
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(ObservableCollection<TvcFile>));
+                StringReader stringReader = new StringReader(Settings.Default.XMLSerializedTvcFileCollection);
+                filesCollection = (ObservableCollection<TvcFile>)xmlSerializer.Deserialize(stringReader);
+            }
         }
     }
 }

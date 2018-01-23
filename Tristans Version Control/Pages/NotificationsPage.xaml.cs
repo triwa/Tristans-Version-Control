@@ -36,7 +36,7 @@ namespace Tristans_Version_Control
         {
             //skip inaccessible processes
             currentProgramsList = Process.GetProcesses()
-                .Select(i=>i.ProcessName)
+                .Select(i => i.ProcessName)
                 .Distinct()
                 .ToList();
 
@@ -96,9 +96,12 @@ namespace Tristans_Version_Control
         //parse notification programs from application settings and fill collection
         private void LoadSettings()
         {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(ObservableCollection<TvcNotificationProgram>));
-            StringReader stringReader = new StringReader(Settings.Default.XMLSerializedNotificationsCollection);
-            selectedNotificationsCollection = (ObservableCollection<TvcNotificationProgram>)xmlSerializer.Deserialize(stringReader);
+            if (Settings.Default.XMLSerializedNotificationsCollection != "")
+            {
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(ObservableCollection<TvcNotificationProgram>));
+                StringReader stringReader = new StringReader(Settings.Default.XMLSerializedNotificationsCollection);
+                selectedNotificationsCollection = (ObservableCollection<TvcNotificationProgram>)xmlSerializer.Deserialize(stringReader);
+            }
         }
     }
 }
